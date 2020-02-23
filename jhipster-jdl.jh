@@ -1,0 +1,37 @@
+
+entity ApplicantForm{
+	userImage Blob
+	name String
+    email String
+    recevierEmail String
+    phone String
+    address String
+	gender String
+	placeOfBirth String
+    dateOfBirth Instant
+    visaDetails String
+    citizenship String
+    resume Blob
+    employeeApplication Boolean
+    employeeOrientation	Boolean
+    employeeIdentification Boolean
+    securityClearance Boolean
+    medicalClearance Boolean
+    employeeWellness Boolean
+    emergencyContact Boolean
+    
+}
+
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+paginate ApplicantForm with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

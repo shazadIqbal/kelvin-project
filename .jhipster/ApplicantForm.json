@@ -1,0 +1,94 @@
+{
+    "name": "ApplicantForm",
+    "fields": [
+        {
+            "fieldName": "userImage",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "recevierEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gender",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "placeOfBirth",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateOfBirth",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "visaDetails",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "citizenship",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "resume",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "employeeApplication",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "employeeOrientation",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "employeeIdentification",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "securityClearance",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "medicalClearance",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "employeeWellness",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "emergencyContact",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200222234300",
+    "entityTableName": "applicant_form",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

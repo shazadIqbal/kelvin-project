@@ -1,0 +1,167 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-applicant-form-heading" jhiTranslate="jhipsterApp.applicantForm.home.createOrEditLabel">Create or edit a Applicant Form</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.userImage" for="field_userImage">User Image</label>
+                    <div>
+                        <div *ngIf="editForm.get('userImage')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('userImageContentType')!.value, editForm.get('userImage')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('userImageContentType')!.value }}, {{ byteSize(editForm.get('userImage')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({userImage: null});editForm.patchValue({userImageContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_userImage" (change)="setFileData($event, 'userImage', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="userImage" id="field_userImage"
+                           formControlName="userImage"/>
+                    <input type="hidden" class="form-control" name="userImageContentType" id="field_userImageContentType"
+                           formControlName="userImageContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.recevierEmail" for="field_recevierEmail">Recevier Email</label>
+                    <input type="text" class="form-control" name="recevierEmail" id="field_recevierEmail"
+                           formControlName="recevierEmail"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                           formControlName="phone"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.address" for="field_address">Address</label>
+                    <input type="text" class="form-control" name="address" id="field_address"
+                           formControlName="address"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.gender" for="field_gender">Gender</label>
+                    <input type="text" class="form-control" name="gender" id="field_gender"
+                           formControlName="gender"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.placeOfBirth" for="field_placeOfBirth">Place Of Birth</label>
+                    <input type="text" class="form-control" name="placeOfBirth" id="field_placeOfBirth"
+                           formControlName="placeOfBirth"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.dateOfBirth" for="field_dateOfBirth">Date Of Birth</label>
+                    <div class="d-flex">
+                        <input id="field_dateOfBirth" type="datetime-local" class="form-control" name="dateOfBirth" formControlName="dateOfBirth" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.visaDetails" for="field_visaDetails">Visa Details</label>
+                    <input type="text" class="form-control" name="visaDetails" id="field_visaDetails"
+                           formControlName="visaDetails"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.citizenship" for="field_citizenship">Citizenship</label>
+                    <input type="text" class="form-control" name="citizenship" id="field_citizenship"
+                           formControlName="citizenship"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.resume" for="field_resume">Resume</label>
+                    <div>
+                        <div *ngIf="editForm.get('resume')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('resumeContentType')!.value, editForm.get('resume')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('resumeContentType')!.value }}, {{ byteSize(editForm.get('resume')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({resume: null});editForm.patchValue({resumeContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_resume" (change)="setFileData($event, 'resume', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="resume" id="field_resume"
+                           formControlName="resume"/>
+                    <input type="hidden" class="form-control" name="resumeContentType" id="field_resumeContentType"
+                           formControlName="resumeContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.employeeApplication" for="field_employeeApplication">Employee Application</label>
+                    <input type="checkbox" class="form-control" name="employeeApplication" id="field_employeeApplication"
+                           formControlName="employeeApplication"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.employeeOrientation" for="field_employeeOrientation">Employee Orientation</label>
+                    <input type="checkbox" class="form-control" name="employeeOrientation" id="field_employeeOrientation"
+                           formControlName="employeeOrientation"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.employeeIdentification" for="field_employeeIdentification">Employee Identification</label>
+                    <input type="checkbox" class="form-control" name="employeeIdentification" id="field_employeeIdentification"
+                           formControlName="employeeIdentification"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.securityClearance" for="field_securityClearance">Security Clearance</label>
+                    <input type="checkbox" class="form-control" name="securityClearance" id="field_securityClearance"
+                           formControlName="securityClearance"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.medicalClearance" for="field_medicalClearance">Medical Clearance</label>
+                    <input type="checkbox" class="form-control" name="medicalClearance" id="field_medicalClearance"
+                           formControlName="medicalClearance"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.employeeWellness" for="field_employeeWellness">Employee Wellness</label>
+                    <input type="checkbox" class="form-control" name="employeeWellness" id="field_employeeWellness"
+                           formControlName="employeeWellness"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.applicantForm.emergencyContact" for="field_emergencyContact">Emergency Contact</label>
+                    <input type="checkbox" class="form-control" name="emergencyContact" id="field_emergencyContact"
+                           formControlName="emergencyContact"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

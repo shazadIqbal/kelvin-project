@@ -1,0 +1,108 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="applicantForm">
+            <h2><span jhiTranslate="jhipsterApp.applicantForm.detail.title">Applicant Form</span> {{ applicantForm.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.userImage">User Image</span></dt>
+                <dd>
+                    <div *ngIf="applicantForm.userImage">
+                        <a (click)="openFile(applicantForm.userImageContentType!, applicantForm.userImage)" jhiTranslate="entity.action.open">open</a>
+                        {{ applicantForm.userImageContentType }}, {{ byteSize(applicantForm.userImage) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.name">Name</span></dt>
+                <dd>
+                    <span>{{ applicantForm.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.email">Email</span></dt>
+                <dd>
+                    <span>{{ applicantForm.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.recevierEmail">Recevier Email</span></dt>
+                <dd>
+                    <span>{{ applicantForm.recevierEmail }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.phone">Phone</span></dt>
+                <dd>
+                    <span>{{ applicantForm.phone }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.address">Address</span></dt>
+                <dd>
+                    <span>{{ applicantForm.address }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.gender">Gender</span></dt>
+                <dd>
+                    <span>{{ applicantForm.gender }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.placeOfBirth">Place Of Birth</span></dt>
+                <dd>
+                    <span>{{ applicantForm.placeOfBirth }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.dateOfBirth">Date Of Birth</span></dt>
+                <dd>
+                    <span>{{ applicantForm.dateOfBirth }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.visaDetails">Visa Details</span></dt>
+                <dd>
+                    <span>{{ applicantForm.visaDetails }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.citizenship">Citizenship</span></dt>
+                <dd>
+                    <span>{{ applicantForm.citizenship }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.resume">Resume</span></dt>
+                <dd>
+                    <div *ngIf="applicantForm.resume">
+                        <a (click)="openFile(applicantForm.resumeContentType!, applicantForm.resume)" jhiTranslate="entity.action.open">open</a>
+                        {{ applicantForm.resumeContentType }}, {{ byteSize(applicantForm.resume) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.employeeApplication">Employee Application</span></dt>
+                <dd>
+                    <span>{{ applicantForm.employeeApplication }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.employeeOrientation">Employee Orientation</span></dt>
+                <dd>
+                    <span>{{ applicantForm.employeeOrientation }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.employeeIdentification">Employee Identification</span></dt>
+                <dd>
+                    <span>{{ applicantForm.employeeIdentification }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.securityClearance">Security Clearance</span></dt>
+                <dd>
+                    <span>{{ applicantForm.securityClearance }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.medicalClearance">Medical Clearance</span></dt>
+                <dd>
+                    <span>{{ applicantForm.medicalClearance }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.employeeWellness">Employee Wellness</span></dt>
+                <dd>
+                    <span>{{ applicantForm.employeeWellness }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.applicantForm.emergencyContact">Emergency Contact</span></dt>
+                <dd>
+                    <span>{{ applicantForm.emergencyContact }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/applicant-form', applicantForm.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="jhipsterApp.applicantForm.home.title">Applicant Forms</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-applicant-form" [routerLink]="['/applicant-form/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="jhipsterApp.applicantForm.home.createLabel">
+            Create a new Applicant Form
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="applicantForms?.length === 0">
+        <span jhiTranslate="jhipsterApp.applicantForm.home.notFound">No applicantForms found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="applicantForms?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userImage"><span jhiTranslate="jhipsterApp.applicantForm.userImage">User Image</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="jhipsterApp.applicantForm.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="jhipsterApp.applicantForm.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="recevierEmail"><span jhiTranslate="jhipsterApp.applicantForm.recevierEmail">Recevier Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="phone"><span jhiTranslate="jhipsterApp.applicantForm.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="address"><span jhiTranslate="jhipsterApp.applicantForm.address">Address</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="gender"><span jhiTranslate="jhipsterApp.applicantForm.gender">Gender</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="placeOfBirth"><span jhiTranslate="jhipsterApp.applicantForm.placeOfBirth">Place Of Birth</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateOfBirth"><span jhiTranslate="jhipsterApp.applicantForm.dateOfBirth">Date Of Birth</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="visaDetails"><span jhiTranslate="jhipsterApp.applicantForm.visaDetails">Visa Details</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="citizenship"><span jhiTranslate="jhipsterApp.applicantForm.citizenship">Citizenship</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="resume"><span jhiTranslate="jhipsterApp.applicantForm.resume">Resume</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="employeeApplication"><span jhiTranslate="jhipsterApp.applicantForm.employeeApplication">Employee Application</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="employeeOrientation"><span jhiTranslate="jhipsterApp.applicantForm.employeeOrientation">Employee Orientation</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="employeeIdentification"><span jhiTranslate="jhipsterApp.applicantForm.employeeIdentification">Employee Identification</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="securityClearance"><span jhiTranslate="jhipsterApp.applicantForm.securityClearance">Security Clearance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="medicalClearance"><span jhiTranslate="jhipsterApp.applicantForm.medicalClearance">Medical Clearance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="employeeWellness"><span jhiTranslate="jhipsterApp.applicantForm.employeeWellness">Employee Wellness</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emergencyContact"><span jhiTranslate="jhipsterApp.applicantForm.emergencyContact">Emergency Contact</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let applicantForm of applicantForms ;trackBy: trackId">
+                    <td><a [routerLink]="['/applicant-form', applicantForm.id, 'view']">{{ applicantForm.id }}</a></td>
+                    <td>
+                        <a *ngIf="applicantForm.userImage" (click)="openFile(applicantForm.userImageContentType, applicantForm.userImage)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="applicantForm.userImage">{{ applicantForm.userImageContentType }}, {{ byteSize(applicantForm.userImage) }}</span>
+                    </td>
+                    <td>{{ applicantForm.name }}</td>
+                    <td>{{ applicantForm.email }}</td>
+                    <td>{{ applicantForm.recevierEmail }}</td>
+                    <td>{{ applicantForm.phone }}</td>
+                    <td>{{ applicantForm.address }}</td>
+                    <td>{{ applicantForm.gender }}</td>
+                    <td>{{ applicantForm.placeOfBirth }}</td>
+                    <td>{{ applicantForm.dateOfBirth | date:'medium' }}</td>
+                    <td>{{ applicantForm.visaDetails }}</td>
+                    <td>{{ applicantForm.citizenship }}</td>
+                    <td>
+                        <a *ngIf="applicantForm.resume" (click)="openFile(applicantForm.resumeContentType, applicantForm.resume)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="applicantForm.resume">{{ applicantForm.resumeContentType }}, {{ byteSize(applicantForm.resume) }}</span>
+                    </td>
+                    <td>{{ applicantForm.employeeApplication }}</td>
+                    <td>{{ applicantForm.employeeOrientation }}</td>
+                    <td>{{ applicantForm.employeeIdentification }}</td>
+                    <td>{{ applicantForm.securityClearance }}</td>
+                    <td>{{ applicantForm.medicalClearance }}</td>
+                    <td>{{ applicantForm.employeeWellness }}</td>
+                    <td>{{ applicantForm.emergencyContact }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/applicant-form', applicantForm.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/applicant-form', applicantForm.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(applicantForm)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="applicantForms?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

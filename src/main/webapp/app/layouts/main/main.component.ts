@@ -11,7 +11,7 @@ import { AccountService } from 'app/core/auth/account.service';
 })
 export class MainComponent implements OnInit {
   private renderer: Renderer2;
-
+  showNav: Boolean = false;
   constructor(
     private accountService: AccountService,
     private titleService: Title,
@@ -24,7 +24,10 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     // try to log in automatically
-    this.accountService.identity().subscribe();
+    this.accountService.identity().subscribe(res => {
+      //console.log(res)
+      if (res != null) this.showNav = true;
+    });
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
